@@ -5,6 +5,11 @@ const Pet = require('../models/pet');
 module.exports = (app) => {
 
   // INDEX PET => index.js
+  app.get('/', (req, res) => {
+    Pet.paginate().then((results) => {
+      res.render('pets-index', { pets: results.docs })
+    })
+  })
 
   // NEW PET
   app.get('/pets/new', (req, res) => {
@@ -21,7 +26,7 @@ module.exports = (app) => {
       })
       .catch((err) => {
         // Handle Errors
-      }) ;
+      });
   });
 
   // SHOW PET
@@ -55,4 +60,18 @@ module.exports = (app) => {
       return res.redirect('/')
     });
   });
+
+  //SEARCH PET 
+  app.get('/search', (req, res) => {
+    var term = new RegExp(req.query.term, 'i')
+
+    Pet.find({$or:[
+      {'name': term},
+      {'species': term}
+    ]}).exec((err, pets) => {
+      res.render('pets-index', { pets: [0] });
+    })
+  });
+
+
 }

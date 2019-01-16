@@ -4,9 +4,9 @@ if (!process.env.PORT) {
 }
 
 const express = require('express');
-const path = require('path');
-const favicon = require('serve-favicon');
-const logger = require('morgan');
+const path = require('path'); // The path module provides utilities for working with file and directory paths. 
+const favicon = require('serve-favicon'); // A Node.js module for finding the URL of a web site's favicon.
+const logger = require('morgan'); // HTTP request logger middleware for node.js
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override')
