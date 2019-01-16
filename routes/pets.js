@@ -6,10 +6,12 @@ module.exports = (app) => {
 
   // INDEX PET => index.js
   app.get('/', (req, res) => {
-    Pet.paginate().then((results) => {
-      res.render('pets-index', { pets: results.docs })
-    })
-  })
+    const page = req.query.page || 1 
+
+    Pet.paginate({}, {page: page}).then((results) => {
+      res.render('pets-index', { pets: results.docs, pageCount: results.pages });
+    });
+  });
 
   // NEW PET
   app.get('/pets/new', (req, res) => {
