@@ -66,13 +66,15 @@ module.exports = (app) => {
   //SEARCH PET 
   app.get('/search', (req, res) => {
     var term = new RegExp(req.query.term, 'i')
-
-    Pet.find({$or:[
-      {'name': term},
-      {'species': term}
-    ]}).exec((err, pets) => {
-      res.render('pets-index', { pets: [0] });
-    })
+    const page = req.query.page || 1
+    Pet.paginate(
+        { $or:[
+          {'name': term},
+          {'species': term}
+        ]}, 
+        { page: page }).then((results) => {
+          res.render('pets-index', { pets: results.docs, pagesCount: results.pages, currentPage: results.page, term: req.query.term });
+        });
   });
 
 
