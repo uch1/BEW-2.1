@@ -24,10 +24,12 @@ module.exports = (app) => {
 
     pet.save()
       .then((pet) => {
-        res.redirect(`/pets/${pet._id}`);
+        // res.redirect(`/pets/${pet._id}`);
+        res.send({ pet: pet });
       })
       .catch((err) => {
         // Handle Errors
+        res.status(400).send(err.errors);
       });
   });
 
