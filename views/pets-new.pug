@@ -7,21 +7,24 @@ block content
       legend New Pet
       form(id="new-pet" action="/pets", method="post")
         .form-group
-            label Name
-            input.form-control(name="name")
+            label Name*
+            input.form-control(name="name" required)
         .form-group
-            label Species
-            input.form-control(name="species")
+            label Birthday*
+            input.form-control(name="birthday" required)
         .form-group
-            label Rectangular Image URL
-            input.form-control(name="picUrl") 
+            label Species*
+            input.form-control(name="species" required)
         .form-group
-            label Square Image URL
-            input.form-control(name="picUrlSq")   
+            label Rectangular Image URL*
+            input.form-control(name="picUrl" required type="url") 
         .form-group
-            label Favorite Food
-            input.form-control(name="favoriteFood") 
+            label Square Image URL*
+            input.form-control(name="picUrlSq" required type="url")   
         .form-group
-            label Description
-            textarea.form-control(name="description")   
+            label Favorite Food*
+            input.form-control(name="favoriteFood" required) 
+        .form-group
+            label Description*
+            textarea.form-control(name="description" required minlength="140")   
         button(type="submit").btn.btn-primary Save
