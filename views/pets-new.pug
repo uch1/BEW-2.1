@@ -7,6 +7,9 @@ block content
       legend New Pet
       form(id="new-pet" action="/pets", method="post")
         .form-group
+            label Avatar*
+            input.form-control(name="avatar" type="file" required)
+        .form-group
             label Name*
             input.form-control(name="name" required)
         .form-group
@@ -15,12 +18,12 @@ block content
         .form-group
             label Species*
             input.form-control(name="species" required)
-        .form-group
-            label Rectangular Image URL*
-            input.form-control(name="picUrl" required type="url") 
-        .form-group
-            label Square Image URL*
-            input.form-control(name="picUrlSq" required type="url")   
+        //- .form-group
+        //-     label Rectangular Image URL*
+        //-     input.form-control(name="picUrl" required type="url") 
+        //- .form-group
+        //-     label Square Image URL*
+        //-     input.form-control(name="picUrlSq" required type="url")   
         .form-group
             label Favorite Food*
             input.form-control(name="favoriteFood" required) 

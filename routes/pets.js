@@ -47,18 +47,37 @@ module.exports = (app) => {
   });
 
   // CREATE PET
-  app.post('/pets', (req, res) => {
+  app.post('/pets', upload.single('avatar'), (req, res, next) => {
+    console.log("Request file: ", req.file)
     var pet = new Pet(req.body);
 
-    pet.save()
-      .then((pet) => {
-        // res.redirect(`/pets/${pet._id}`);
+    pet.save(function(err) {
+      if (req.file) {
+        client.upload(req.file.path, {}, function(err, versions, meta) {
+          if (err) { return res.status(400).send({ err: err }) };
+
+          versions.forEach(function(image) {
+            var urlArray = image.url.split('-');
+            urlArray.pop();
+            var url = urlArray.join('-');
+            pet.avatarUrl = url;
+            pet.save();
+          });
+          res.send({ pet: pet });
+        });
+      } else {
         res.send({ pet: pet });
-      })
-      .catch((err) => {
-        // Handle Errors
-        res.status(400).send(err.errors);
-      });
+      }
+    })
+    // pet.save()
+    //   .then((pet) => {
+    //     // res.redirect(`/pets/${pet._id}`);
+    //     res.send({ pet: pet });
+    //   })
+    //   .catch((err) => {
+    //     // Handle Errors
+    //     res.status(400).send(err.errors);
+    //   });
   });
 
   // SHOW PET

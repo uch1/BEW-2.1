@@ -87,6 +87,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# Upload images from AWS 
+uploads/
 
 # End of https://www.gitignore.io/api/node,macos,bower
 todo.txt
