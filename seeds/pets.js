@@ -1,6 +1,7 @@
 module.exports = [
     {
         "name": "Rex",
+        "price": 10,
         "species": "Rottweiler",
         "birthday": "20017-11-11",
         "favoriteFood": "Chicken",
@@ -10,6 +11,7 @@ module.exports = [
     },
     {
         "name": "Fido",
+        "price": 10,
         "species": "Greyhound",
         "birthday": "2008-11-11",
         "favoriteFood": "Liver",
@@ -19,6 +21,7 @@ module.exports = [
     },
     {
         "name": "Rolfe",
+        "price": 10,
         "species": "Pitbull",
         "birthday": "2008-11-11",
         "favoriteFood": "Beef",
@@ -28,6 +31,7 @@ module.exports = [
     },
     {
         "name": "Princhi",
+        "price": 10,
         "species": "West Highland White Terrier",
         "birthday": "2008-11-11",
         "favoriteFood": "Fish",
@@ -37,6 +41,7 @@ module.exports = [
     },
     {
         "name": "Mr. Fluffles",
+        "price": 10,
         "species": "Poodle",
         "birthday": "2008-11-11",
         "favoriteFood": "Chicken",
@@ -46,6 +51,7 @@ module.exports = [
     },
     {
         "name": "Santa's Little Helper",
+        "price": 10,
         "species": "Mixed",
         "birthday": "2008-11-11",
         "favoriteFood": "Pork",
@@ -55,6 +61,7 @@ module.exports = [
     },
     {
         "name": "Alf",
+        "price": 10,
         "species": "Alien",
         "birthday": "2008-11-11",
         "favoriteFood": "Cats",
@@ -64,6 +71,7 @@ module.exports = [
     },
     {
         "name": "Bubba",
+        "price": 10,
         "species": "Mastiff",
         "birthday": "2008-11-11",
         "favoriteFood": "Dragon",
