@@ -9,7 +9,7 @@ const favicon = require('serve-favicon'); // A Node.js module for finding the UR
 const logger = require('morgan'); // HTTP request logger middleware for node.js
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
 
 const app = express();
 
