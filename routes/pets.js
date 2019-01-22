@@ -127,16 +127,34 @@ module.exports = (app) => {
 
   //SEARCH PET 
   app.get('/search', (req, res) => {
-    var term = new RegExp(req.query.term, 'i')
-    const page = req.query.page || 1
-    Pet.paginate(
-        { $or:[
-          {'name': term},
-          {'species': term}
-        ]}, 
-        { page: page }).then((results) => {
-          res.render('pets-index', { pets: results.docs, pagesCount: results.pages, currentPage: results.page, term: req.query.term });
+    // VERSION 2
+    Pet.find(
+          { $text: { $search: req.query.term } },
+          { score: { $meta: "textScore" } }
+        )
+        .sort({ score: { $meta: "textScore" } })
+        .limit(20)
+        .exec(function(err, pets) {
+          if (err) { return res.status(400).send(err) }
+
+          if (req.header('Content-Type') == 'application/json') {
+            return res.json({ pets: pets });
+          } else {
+            return res.render('pets-search', { pets: pets, term: req.query.term });
+          }
         });
+
+    // VERSION 1 
+    // var term = new RegExp(req.query.term, 'i')
+    // const page = req.query.page || 1
+    // Pet.paginate(
+    //     { $or:[
+    //       {'name': term},
+    //       {'species': term}
+    //     ]}, 
+    //     { page: page }).then((results) => {
+    //       res.render('pets-index', { pets: results.docs, pagesCount: results.pages, currentPage: results.page, term: req.query.term });
+    //     });
   });
 
   // PURCHASE PET 

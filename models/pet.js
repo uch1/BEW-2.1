@@ -24,5 +24,10 @@ const PetSchema = new Schema({
   timestamps: true
 });
 
+// Without weigths  
+// PetSchema.index({ name: 'text', species: 'text', favoriteFood: 'text', description: 'text' });
+// With weigths 
+// PetSchema.index({ name: 'text', species: 'text', favoriteFood: 'text', description: 'text' }, { name: 'My text index', weigths: { name: 1, species: 1, favoriteFood: 1, description: 1}});
+
 PetSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Pet', PetSchema);
